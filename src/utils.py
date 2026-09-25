@@ -33,7 +33,7 @@ class CutMix:
         rand_index = torch.randperm(batch_size).to(batch.device)
         
         bbx1, bby1, bbx2, bby2 = self.rand_bbox(batch.size(), lam)
-        batch[:, :, bbx1:bbx2, bby1:by2] = batch[rand_index, :, bbx1:bbx2, bby1:by2]
+        batch[:, :, bbx1:bbx2, bby1:bby2] = batch[rand_index, :, bbx1:bbx2, bby1:bby2]
         lam = 1 - ((bbx2 - bbx1) * (bby2 - bby1) / (batch.size(-1) * batch.size(-2)))
         return batch, labels, labels[rand_index], lam
     
